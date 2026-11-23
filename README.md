@@ -22,7 +22,7 @@ cd FreeCity-Android-Game
 gradle wrapper --gradle-version 8.7
 ./gradlew assembleDebug
 ```
-The Android SDK platform 35 and build-tools must be installed and configured in Termux. Set ANDROID_HOME to the SDK directory. Building native Android projects on Termux can require extra SDK/Gradle setup; this repository has not yet been verified on your phone.
+The Android SDK platform 35 and build-tools must be installed and configured in Termux. The GitHub Actions workflow also builds a debug APK on pushes to this branch. Set ANDROID_HOME to the SDK directory. Building native Android projects on Termux can require extra SDK/Gradle setup; this repository has not yet been verified on your phone.
 
 APK output: `app/build/outputs/apk/debug/app-debug.apk`
 

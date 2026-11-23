@@ -45,8 +45,8 @@ public class GameRenderer implements GLSurfaceView.Renderer {
         float now=System.nanoTime()/1e9f, dt=Math.min(0.04f,now-lastTime); lastTime=now;
         yaw += look; look=0;
         float speed=10f;
-        px += (float)Math.sin(yaw)*(-moveY)*speed*dt + (float)Math.cos(yaw)*moveX*speed*dt;
-        pz += (float)Math.cos(yaw)*(-moveY)*speed*dt - (float)Math.sin(yaw)*moveX*speed*dt;
+        px += (float)Math.sin(yaw)*moveY*speed*dt + (float)Math.cos(yaw)*moveX*speed*dt;
+        pz += (float)Math.cos(yaw)*moveY*speed*dt - (float)Math.sin(yaw)*moveX*speed*dt;
         GLES30.glClear(GLES30.GL_COLOR_BUFFER_BIT|GLES30.GL_DEPTH_BUFFER_BIT);
         Matrix4.lookAt(view,px-(float)Math.sin(yaw)*11f,8f,pz+(float)Math.cos(yaw)*11f,px,1.2f,pz,0,1,0);
         Matrix4.multiply(vp,projection,view);

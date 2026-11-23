@@ -66,8 +66,4 @@ public class GameRenderer implements GLSurfaceView.Renderer {
         GLES30.glUniform3f(cameraLocation,playerX-(float)Math.sin(yaw)*10.5f,7.2f,playerZ+(float)Math.cos(yaw)*10.5f);
         cube.drawInstanced(city.createFrameInstances(playerX,playerZ,yaw),city.instanceCount());
     }
-    @Override public void onSurfaceDestroyed() {
-        if(cube!=null)cube.destroy();
-        if(shader!=null)shader.destroy();
-    }
 }

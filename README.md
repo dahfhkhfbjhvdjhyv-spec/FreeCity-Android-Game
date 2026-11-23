@@ -20,7 +20,7 @@ Unity-based offline open-world Android game prototype, targeting a playable firs
 - Procedural prototype city scene generator
 
 ## Generate and play in Unity
-1. Open the `FreeCity` folder in Unity 2022.3.50f1.
+1. Open this repository folder (the folder containing `Assets`, `Packages`, and `ProjectSettings`) in Unity Hub using Unity 2022.3.50f1.
 2. Install Android Build Support, Android SDK & NDK Tools, and OpenJDK through Unity Hub if building for Android.
 3. Wait for packages to resolve.
 4. Select **FreeCity > Generate Prototype City Scene**.

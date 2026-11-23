@@ -218,14 +218,15 @@ public class MainActivity extends Activity {
         if (requestCode != PICK_IMAGES || resultCode != RESULT_OK || data == null) return;
         PdfDocument pdf = new PdfDocument();
         try {
+            int count = 0;
             if (data.getClipData() != null) {
                 for (int i = 0; i < data.getClipData().getItemCount(); i++) {
-                    addImagePage(pdf, data.getClipData().getItemAt(i).getUri(), i + 1);
+                    addImagePage(pdf, data.getClipData().getItemAt(i).getUri(), ++count);
                 }
             } else if (data.getData() != null) {
-                addImagePage(pdf, data.getData(), 1);
+                addImagePage(pdf, data.getData(), ++count);
             }
-            if (pdf.getPages().isEmpty()) {
+            if (count == 0) {
                 pdf.close();
                 showStatus("No readable images were selected.");
                 return;

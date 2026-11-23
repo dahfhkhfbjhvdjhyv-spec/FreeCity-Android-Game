@@ -1,47 +1,30 @@
-# FreeCity
+# FreeCity — Native Android 3D
 
-Unity-based offline open-world Android game prototype, targeting a playable first vertical slice.
+Unity-free Android project using Java, Android Gradle Plugin and OpenGL ES 3.0.
 
-## Game direction
-- Engine: Unity 2022.3.50f1
-- Platform: Android ARM64, landscape
-- Mode: offline single-player
-- World: 500 x 500 m prototype city block
-- Art direction: cinematic target with scalable mobile settings
+## Current prototype
+- Full-screen landscape Android game shell
+- OpenGL ES 3.0 renderer with perspective camera and depth testing
+- Procedurally generated grid city, roads and varied-height buildings
+- Third-person player placeholder and starter car placeholder
+- On-screen touch movement/look HUD
+- No Unity Editor, Unity license, external game assets or network runtime dependency
 
-## Current gameplay systems in source
-- Third-person player controller and follow camera
-- Visible on-screen movement pad plus gas, brake, steering, enter and exit buttons
-- Drivable starter vehicle with camera handoff
-- Six lightweight ambient traffic cars
-- Twelve low-cost pedestrian walkers on sidewalk loops
-- Expanded district road grid and shared-material streetlights
-- First Drive mission with a checkpoint and completion state
-- Procedural prototype city scene generator
+This is an early playable-engine foundation, not a finished GTA-scale game. Character animation, vehicle physics, AI traffic, missions, audio, detailed models, materials, shadows and optimization are planned follow-up milestones.
 
-## Generate and play in Unity
-1. Open this repository folder (the folder containing `Assets`, `Packages`, and `ProjectSettings`) in Unity Hub using Unity 2022.3.50f1.
-2. Install Android Build Support, Android SDK & NDK Tools, and OpenJDK through Unity Hub if building for Android.
-3. Wait for packages to resolve.
-4. Select **FreeCity > Generate Prototype City Scene**.
-5. Open `Assets/Scenes/FreeCity_Prototype.unity` and press Play.
-6. For editor keyboard testing: WASD/arrows move/drive, E enters a nearby car, F exits.
+## Build in Termux
+Install a JDK 17 and Gradle compatible with Android Gradle Plugin 8.6.1. Then:
+```sh
+pkg update
+pkg install openjdk-17 gradle git
+git clone -b native-android https://github.com/dahfhkhfbjhvdjhyv-spec/FreeCity-Android-Game.git
+cd FreeCity-Android-Game
+gradle wrapper --gradle-version 8.7
+./gradlew assembleDebug
+```
+The Android SDK platform 35 and build-tools must be installed and configured in Termux. Set ANDROID_HOME to the SDK directory. Building native Android projects on Termux can require extra SDK/Gradle setup; this repository has not yet been verified on your phone.
 
-## Current prototype scope
-The generated 500 x 500 m scene includes a central avenue, a secondary road grid, simple block buildings, streetlights, ambient traffic, pedestrians, a drivable starter car, and a first checkpoint mission. These are procedural placeholder assets; they are not final cinematic art or realistic traffic simulation.
+APK output: `app/build/outputs/apk/debug/app-debug.apk`
 
-## Android APK
-The repository includes **Actions > FreeCity Android APK**. For a Unity Personal CI build, activate Unity Hub locally using the Unity account, then add these repository Actions secrets: `UNITY_LICENSE` (the full contents of the `.ulf` file), `UNITY_EMAIL` (Unity account email), and `UNITY_PASSWORD` (Unity account password). Do not commit or share these values. Run the workflow manually after adding all three secrets. A successful run uploads `FreeCity-Android-APK`. Current GameCI guidance documents local Unity Hub activation; the older automated `.alf` workflow has been removed.
-
-## Honest build status
-The gameplay source and scene generator are committed. This environment has not run Unity Editor, compiled the project, launched gameplay, or produced an APK. Those checks must pass before this can be called a verified playable Android release. The city, traffic, mission and controls are an initial vertical slice—not a finished GTA-scale game.
-
-## Next milestones
-- Test and fix Unity compile/runtime issues
-- Add pedestrian AI, traffic rules, collision/vehicle physics and multiple missions
-- Expand districts with streamed scenes and optimized assets
-- Add LODs, baked lighting, occlusion and device-specific quality presets
-- Profile on real Android devices and publish a signed APK
-
-## Performance approach
-Keep the mobile build lightweight first: limited ambient traffic, simple materials, scalable quality, and streamed districts. "Cinematic" is the visual target, not a promise of maximum settings on every phone.
+## Graphics
+The app requires OpenGL ES 3.0 hardware support. Android devices vary in GPU capability and frame rate. See Android's official NDK/OpenGL ES support notes: https://developer.android.com/ndk/guides/stable_apis

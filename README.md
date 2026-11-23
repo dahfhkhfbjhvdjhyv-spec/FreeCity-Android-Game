@@ -31,7 +31,7 @@ Unity-based offline open-world Android game prototype, targeting a playable firs
 The generated 500 x 500 m scene includes a central avenue, a secondary road grid, simple block buildings, streetlights, ambient traffic, pedestrians, a drivable starter car, and a first checkpoint mission. These are procedural placeholder assets; they are not final cinematic art or realistic traffic simulation.
 
 ## Android APK
-The repository includes **Actions > Free City Android APK**. It requires a valid Unity Personal license file in the repository Actions secret named `UNITY_LICENSE`. Run the workflow manually after adding the secret. A successful run uploads `FreeCity-Android-APK`.
+The repository includes **Actions > FreeCity Android APK**. For a Unity Personal CI build, activate Unity Hub locally using the Unity account, then add these repository Actions secrets: `UNITY_LICENSE` (the full contents of the `.ulf` file), `UNITY_EMAIL` (Unity account email), and `UNITY_PASSWORD` (Unity account password). Do not commit or share these values. Run the workflow manually after adding all three secrets. A successful run uploads `FreeCity-Android-APK`. Current GameCI guidance documents local Unity Hub activation; the older automated `.alf` workflow has been removed.
 
 ## Honest build status
 The gameplay source and scene generator are committed. This environment has not run Unity Editor, compiled the project, launched gameplay, or produced an APK. Those checks must pass before this can be called a verified playable Android release. The city, traffic, mission and controls are an initial vertical slice—not a finished GTA-scale game.

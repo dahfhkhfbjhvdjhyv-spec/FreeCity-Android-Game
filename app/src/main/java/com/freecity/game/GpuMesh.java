@@ -74,7 +74,7 @@ public final class GpuMesh {
             {-1,1,-1, 1,1,-1, 1,1,1, -1,1,1, 0,1,0},
             {-1,-1,-1, -1,-1,1, 1,-1,1, 1,-1,-1, 0,-1,0}
         };
-        int[] order={0,1,2,0,2,3};
+        int[] order={0,2,1,0,3,2};
         for(float[] face:faces) {
             for(int index:order) {
                 int base=index*3;

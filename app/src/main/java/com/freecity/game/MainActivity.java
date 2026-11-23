@@ -50,10 +50,11 @@ public class MainActivity extends Activity {
             p.setTextSize(13); c.drawText("LEFT: MOVE     RIGHT: LOOK",24,54,p);
         }
         @Override public boolean onTouchEvent(MotionEvent e) {
-            float x=e.getX(), y=e.getY(), w=getWidth(), h=getHeight();
+            float x=e.getX(), w=getWidth(), h=getHeight();
             int action=e.getActionMasked(), index=e.getActionIndex(), id=e.getPointerId(index);
             if(action==MotionEvent.ACTION_DOWN || action==MotionEvent.ACTION_POINTER_DOWN) {
-                if(x < w*0.48f) joyPointer=id; else camPointer=id;
+                if(x < w*0.48f) joyPointer=id;
+                else { camPointer=id; camX=x; }
             }
             if(action==MotionEvent.ACTION_MOVE) {
                 for(int i=0;i<e.getPointerCount();i++) {
@@ -63,7 +64,8 @@ public class MainActivity extends Activity {
                         joyY=Math.max(-1,Math.min(1,(py-(h-105))/72));
                         renderer.setMove(joyX,joyY);
                     } else if(pid==camPointer) {
-                        camX=px; renderer.addLook((px-camX)*0.004f);
+                        renderer.addLook((px-camX)*0.004f);
+                        camX=px;
                     }
                 }
                 invalidate(); return true;
